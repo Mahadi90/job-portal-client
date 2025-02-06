@@ -8,7 +8,7 @@ import AuthContext from "../../context/authContext/AuthContext";
 
 const Login = () => {
 
-    const { logIn } = useContext(AuthContext)
+    const { logIn , signinWgoogle} = useContext(AuthContext)
 
     const handleLogin = (e) => {
         e.preventDefault()
@@ -28,6 +28,20 @@ const Login = () => {
                 form.reset()
             })
         .catch(error => {
+            console.log(error.message)
+        })
+    }
+
+    const googleLogin = () => {
+        signinWgoogle()
+        .then(result => {
+            console.log(result.user)
+            toast("User Login Successful!", {
+                type: "success",
+                theme: "colored"
+            })
+        })
+        .catch(error =>{
             console.log(error.message)
         })
     }
@@ -61,6 +75,7 @@ const Login = () => {
                         </div>
                         <p>Are you new here? please <Link className="link" to='/register'>Register</Link></p>
                     </form>
+                    <button onClick={googleLogin} className="btn btn-error mb-8 mx-2">Signin with Google</button>
                 </div>
             </div>
         </div>

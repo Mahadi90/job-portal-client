@@ -66,7 +66,7 @@ export default function Navbar() {
           }`}
       >
         <div className="flex justify-between items-center">
-          <h2 className="text-xl font-bold">Logo</h2>
+        <div className="text-xl font-bold flex gap-2 items-center"><img className="w-10 h-10" src={logo} alt="" />jobPortal</div>
           <X size={28} className="cursor-pointer" onClick={() => setIsOpen(false)} />
         </div>
 
@@ -75,8 +75,16 @@ export default function Navbar() {
         </div>
 
         <div className="mt-6 flex flex-col gap-4">
+        {
+            user && <div data-tip={user?.displayName} className="tooltip tooltip-bottom">
+              <img className='rounded-full w-10 h-10' src={user?.photoURL} alt="" />
+            </div>
+          }
           <Button variant="outline" className="text-white border-white"><Link to='/register'>Register</Link></Button>
-          <Button variant="default"><Link to='/login'>Login</Link></Button>
+          {
+            user ? <Button onClick={handleLogOut} variant="default">Logout</Button> :
+              <Button variant="default"><Link to='/login'>Login</Link></Button>
+          }
         </div>
       </div>
     </nav>
