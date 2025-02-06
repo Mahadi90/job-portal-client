@@ -1,8 +1,8 @@
-/* eslint-disable no-unused-vars */
+
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import AuthContext from "./AuthContext";
-import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
 import auth from "../../firebase/firebase.init";
 
 
@@ -13,6 +13,22 @@ const AuthProvider = ({children}) => {
     const createUser = (email, password) => {
         setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
+    }
+
+    const profile = (name, photo) => {
+        return updateProfile(auth.currentUser, {
+            displayName : name , photoURL : photo
+        })
+    }
+
+    const logIn =(email, password) =>{
+        setLoading(true)
+        return signInWithEmailAndPassword(auth, email, password)
+    } 
+
+    const logOut = () => {
+        setLoading(true)
+        signOut(auth)
     }
 
     useEffect(()=>{
@@ -28,7 +44,10 @@ const AuthProvider = ({children}) => {
     const authInfo = {
         user,
         loading,
-        createUser
+        createUser,
+        logIn,
+        profile,
+        logOut
     }
     return (
         <AuthContext.Provider value={authInfo}>

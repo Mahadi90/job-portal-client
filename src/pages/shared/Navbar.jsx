@@ -1,29 +1,57 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "../../components/ui/Button";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import AuthContext from "../../context/authContext/AuthContext";
+import logo from '../../assets/images.png'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { user, logOut } = useContext(AuthContext)
+
+  const navItem = <>
+    <NavLink className={({ isActive }) =>
+      isActive ? "text-red-500" : ""
+    } to='/'>Home</NavLink>
+    <NavLink className={({ isActive }) =>
+      isActive ? "text-red-500" : ""
+    } to='/'>Home</NavLink>
+    <NavLink className={({ isActive }) =>
+      isActive ? "text-red-500" : ""
+    } to='/'>Home</NavLink>
+    <NavLink className={({ isActive }) =>
+      isActive ? "text-red-500" : ""
+    } to='/'>Home</NavLink>
+  </>
+
+  const handleLogOut = () => {
+    logOut()
+  }
 
   return (
     <nav className="bg-gray-900 text-white p-4 w-full z-50">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo */}
-        <div className="text-xl font-bold">Logo</div>
+        <div className="text-xl font-bold flex gap-2 items-center"><img className="w-10 h-10" src={logo} alt="" />jobPortal</div>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex gap-6 text-lg">
-          <a href="#" className="hover:text-gray-300">Home</a>
-          <a href="#" className="hover:text-gray-300">About</a>
-          <a href="#" className="hover:text-gray-300">Services</a>
-          <a href="#" className="hover:text-gray-300">Contact</a>
+          {navItem}
         </div>
 
         {/* Register/Login Buttons */}
-        <div className="hidden md:flex gap-4">
+        <div className="hidden md:flex gap-4 items-center">
+          {
+            user && <div data-tip={user?.displayName} className="tooltip tooltip-bottom">
+              <img className='rounded-full w-10 h-10' src={user?.photoURL} alt="" />
+            </div>
+          }
           <Button variant="outline" className="text-white border-white"><Link to='/register'>Register</Link></Button>
-          <Button variant="default"><Link to='/login'>Login</Link></Button>
+          {
+            user ? <Button onClick={handleLogOut} variant="default">Logout</Button> :
+              <Button variant="default"><Link to='/login'>Login</Link></Button>
+          }
+
         </div>
 
         {/* Mobile Menu Button */}
@@ -34,9 +62,8 @@ export default function Navbar() {
 
       {/* Mobile Sidebar */}
       <div
-        className={`fixed top-0 left-0 h-full w-3/4 bg-gray-800 text-white p-6 transition-transform duration-300 ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className={`fixed top-0 left-0 h-full w-3/4 bg-gray-800 text-white p-6 transition-transform duration-300 z-50 ${isOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
       >
         <div className="flex justify-between items-center">
           <h2 className="text-xl font-bold">Logo</h2>
@@ -44,10 +71,7 @@ export default function Navbar() {
         </div>
 
         <div className="mt-6 flex flex-col gap-4 text-lg">
-          <a href="#" className="hover:text-gray-300">Home</a>
-          <a href="#" className="hover:text-gray-300">About</a>
-          <a href="#" className="hover:text-gray-300">Services</a>
-          <a href="#" className="hover:text-gray-300">Contact</a>
+          {navItem}
         </div>
 
         <div className="mt-6 flex flex-col gap-4">
