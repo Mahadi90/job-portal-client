@@ -15,13 +15,13 @@ export default function Navbar() {
     } to='/'>Home</NavLink>
     <NavLink className={({ isActive }) =>
       isActive ? "text-red-500" : ""
-    } to='/'>Home</NavLink>
+    } to='/about'>About</NavLink>
     <NavLink className={({ isActive }) =>
       isActive ? "text-red-500" : ""
-    } to='/'>Home</NavLink>
+    } to='/contact'>Contact</NavLink>
     <NavLink className={({ isActive }) =>
       isActive ? "text-red-500" : ""
-    } to='/'>Home</NavLink>
+    } to='/blog'>Blog</NavLink>
   </>
 
   const handleLogOut = () => {
