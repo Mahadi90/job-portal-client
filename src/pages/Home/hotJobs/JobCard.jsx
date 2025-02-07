@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 import { FaLocationDot } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 const JobCard = ({ job }) => {
 
-    const { title, requirements,jobType, company_logo, company, location, description, salaryRange } = job;
+    const {_id, title, requirements,jobType, company_logo, company, location, description, salaryRange } = job;
 
     return (
         <div className="card bg-base-100  shadow-xl">
@@ -31,9 +32,9 @@ const JobCard = ({ job }) => {
                         requirements.map((skill, idx) => <div className="border rounded-lg py-1 px-2" key={idx}>{skill}</div>)
                     }
                 </div>
-                <div className="flex justify-between">
+                <div className="space-y-2">
                     <p>Salary : {salaryRange.min} to {salaryRange.max} BDT</p>
-                    <button className="btn bg-blue-500 text-white">Apply Now</button>
+                    <button className="btn w-full bg-blue-500 text-white"><Link to={`/jobs/${_id}`}>See Details and Apply</Link></button>
                 </div>
             </div>
         </div>
