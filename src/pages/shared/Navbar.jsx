@@ -55,7 +55,12 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="md:hidden cursor-pointer" onClick={() => setIsOpen(true)}>
+        <div className="md:hidden cursor-pointer flex items-center gap-2" onClick={() => setIsOpen(true)}>
+        {
+            user && <div data-tip={user?.displayName} className="tooltip tooltip-bottom">
+              <img className='rounded-full w-10 h-10' src={user?.photoURL} alt="" />
+            </div>
+          }
           <Menu size={28} />
         </div>
       </div>
@@ -75,11 +80,7 @@ export default function Navbar() {
         </div>
 
         <div className="mt-6 flex flex-col gap-4">
-        {
-            user && <div data-tip={user?.displayName} className="tooltip tooltip-bottom">
-              <img className='rounded-full w-10 h-10' src={user?.photoURL} alt="" />
-            </div>
-          }
+        
           <Button variant="outline" className="text-white border-white"><Link to='/register'>Register</Link></Button>
           {
             user ? <Button onClick={handleLogOut} variant="default">Logout</Button> :

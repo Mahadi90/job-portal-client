@@ -1,7 +1,7 @@
 import Lottie from "lottie-react";
 import { toast, ToastContainer } from "react-toastify";
 import registerAnimation from '../../assets/registerAnim.json'
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../../context/authContext/AuthContext";
 
@@ -9,6 +9,11 @@ import AuthContext from "../../context/authContext/AuthContext";
 const Login = () => {
 
     const { logIn , signinWgoogle} = useContext(AuthContext)
+
+    const location = useLocation()
+    const navigate = useNavigate()
+    const from = location.state || '/'
+    
 
     const handleLogin = (e) => {
         e.preventDefault()
@@ -25,6 +30,7 @@ const Login = () => {
                     type: "success",
                     theme: "colored"
                 })
+                navigate(from)
                 form.reset()
             })
         .catch(error => {
@@ -40,6 +46,7 @@ const Login = () => {
                 type: "success",
                 theme: "colored"
             })
+            navigate(from)
         })
         .catch(error =>{
             console.log(error.message)
