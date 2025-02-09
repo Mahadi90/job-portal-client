@@ -29,7 +29,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="bg-gray-900 text-white p-4 w-full z-50">
+    <nav className="border-b text-black p-4 w-full z-50">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo */}
         <div className="text-xl font-bold flex gap-2 items-center"><img className="w-10 h-10" src={logo} alt="" />jobPortal</div>
@@ -46,7 +46,7 @@ export default function Navbar() {
               <img className='rounded-full w-10 h-10' src={user?.photoURL} alt="" />
             </div>
           }
-          <Button variant="outline" className="text-white border-white"><Link to='/register'>Register</Link></Button>
+          <Button variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-700 hover:text-white "><Link to='/register'>Register</Link></Button>
           {
             user ? <Button onClick={handleLogOut} variant="default">Logout</Button> :
               <Button variant="default"><Link to='/login'>Login</Link></Button>

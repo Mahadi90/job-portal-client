@@ -1,10 +1,11 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import banner from '../../assets/images/team1.jpg'
+
 
 
 const JobDetails = () => {
     const job = useLoaderData()
-    const {title, company, description,category, jobType,requirements,salaryRange, responsibilities,applicationDeadline,hr_name,hr_email} = job;
+    const {_id, title, company, description,category, jobType,requirements,salaryRange, responsibilities,applicationDeadline,hr_name,hr_email} = job;
     return (
         <div className="bg-base-200 min-h-screen">
              <img className="h-[40vh] lg:h-[70vh] w-full" src={banner} alt="" />
@@ -40,7 +41,7 @@ const JobDetails = () => {
                     <p>Job Categry : {category}</p>
                     <p>Job tpe : {jobType}</p>
                 </div>
-                <button className="btn bg-blue-500 text-white mt-6">Apply Now</button>
+                <button className="btn hover:bg-blue-700 bg-blue-500 text-white mt-6"><Link to={`/jobApply/${_id}`}>Apply Now</Link></button>
           </div>
         </div>
       </div>

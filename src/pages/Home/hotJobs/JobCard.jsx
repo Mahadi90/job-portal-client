@@ -1,13 +1,23 @@
 /* eslint-disable react/prop-types */
 import { FaLocationDot } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import Swal from 'sweetalert2'
 
 const JobCard = ({ job }) => {
 
     const {_id, title, requirements,jobType, company_logo, company, location, description, salaryRange } = job;
 
+    const handleRoute = () => {
+        Swal.fire({
+            title: "You have to login first!",
+            text: "You won't be able to see details without login or signup",
+            icon: "warning",
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "Ok"
+          })
+    }
     return (
-        <div className="card bg-base-100  shadow-xl">
+        <div className="card bg-base-100 border p-2">
             <div className="flex gap-2">
                 <figure>
                     <img
@@ -34,7 +44,8 @@ const JobCard = ({ job }) => {
                 </div>
                 <div className="space-y-2">
                     <p>Salary : {salaryRange.min} to {salaryRange.max} BDT</p>
-                    <button className="btn w-full bg-blue-500 text-white"><Link to={`/jobs/${_id}`}>See Details and Apply</Link></button>
+                    <button onClick={handleRoute} className="btn w-full bg-blue-500 text-white">
+                        <Link to={`/jobs/${_id}`}>See Details and Apply</Link></button>
                 </div>
             </div>
         </div>
