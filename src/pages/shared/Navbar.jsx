@@ -15,7 +15,7 @@ export default function Navbar() {
     } to='/'>Home</NavLink>
     <NavLink className={({ isActive }) =>
       isActive ? "text-red-500" : ""
-    } to='/about'>About</NavLink>
+    } to='/myJobs'>My Jobs</NavLink>
     <NavLink className={({ isActive }) =>
       isActive ? "text-red-500" : ""
     } to='/contact'>Contact</NavLink>
@@ -43,10 +43,10 @@ export default function Navbar() {
         <div className="hidden md:flex gap-4 items-center">
           {
             user && <div data-tip={user?.displayName} className="tooltip tooltip-bottom">
-              <img className='rounded-full w-10 h-10' src={user?.photoURL} alt="" />
+              <img className='rounded-full w-10 h-10' src={user?.photoURL} alt={user.displayName} />
             </div>
           }
-          <Button variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-700 hover:text-white "><Link to='/register'>Register</Link></Button>
+          <Button variant="outline" className="border-blue-500 text-blue-700 hover:bg-blue-500 hover:text-white "><Link to='/register'>Register</Link></Button>
           {
             user ? <Button onClick={handleLogOut} variant="default">Logout</Button> :
               <Button variant="default"><Link to='/login'>Login</Link></Button>
