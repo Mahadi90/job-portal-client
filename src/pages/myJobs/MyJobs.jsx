@@ -70,6 +70,10 @@ const MyJobs = () => {
     return (
         <div className="my-20 ">
             <h2 className="text-3xl text-center my-10 text-blue-500">Total Applied Jobs : {myJobs.length}</h2>
+            <div className="flex justify-center my-6">
+            <img className="w-40 h-48 border-4 border-blue-500" src={user?.photoURL} alt={user.displayName} />
+            </div>
+           
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}

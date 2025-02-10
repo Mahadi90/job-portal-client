@@ -24,6 +24,7 @@ const JobApply = () => {
             job_id: id,
             applicants_name: name,
             applicants_email: email,
+            applicants_photo : user.photoURL,
             github,
             linkedin,
             resume,
