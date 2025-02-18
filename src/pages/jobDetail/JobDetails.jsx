@@ -5,15 +5,19 @@ import banner from '../../assets/images/team1.jpg'
 
 const JobDetails = () => {
     const job = useLoaderData()
-    const {_id, title, company, description,category, jobType,requirements,salaryRange, responsibilities,applicationDeadline,hr_name,hr_email} = job;
+    const {_id, title, company,company_logo, description,category, jobType,requirements,salaryRange, responsibilities,applicationDeadline,hr_name,hr_email} = job;
     return (
         <div className="bg-base-200 min-h-screen">
              <img className="h-[40vh] lg:h-[70vh] w-full" src={banner} alt="" />
         <div className="ms-8 pb-8 my-8">
           <div className=" ">
-            <h1 className="text-5xl font-bold">{company}</h1>
-            <h2 className="text-3xl mt-2 font-bold">{title}</h2>
             
+            <div className="flex items-center">
+            <div><img className="w-20 h-20 mr-4" src={company_logo} alt="" /></div>
+                <div><h1 className="text-5xl font-bold">{company}</h1>
+                <h2 className="text-3xl mt-2 font-bold">{title}</h2></div>
+                
+            </div>
             <p className="py-6">
             Details: {description}
             </p>

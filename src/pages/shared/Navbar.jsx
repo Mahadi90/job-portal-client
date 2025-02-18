@@ -21,7 +21,7 @@ export default function Navbar() {
     } to='/addJob'>Add Job</NavLink>
     <NavLink className={({ isActive }) =>
       isActive ? "border-b-4 border-blue-600" : ""
-    } to='/blog'>Blog</NavLink>
+    } to='/myPostedJobs'>My Posted Jobs</NavLink>
   </>
 
   const handleLogOut = () => {

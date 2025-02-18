@@ -1,11 +1,13 @@
 
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 
 
 const AddJob = () => {
     const {user} = useAuth()
+    const navigate = useNavigate()
 
    const handleMyJob = e =>{
      e.preventDefault()
@@ -35,6 +37,7 @@ const AddJob = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
+                    navigate('/myPostedJobs')
                   }
                     
                  })

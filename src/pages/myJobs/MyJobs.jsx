@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { FaTrash } from "react-icons/fa6";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 
 const MyJobs = () => {
@@ -58,11 +59,15 @@ const MyJobs = () => {
     }
 
     useEffect(() => {
-        fetch(`http://localhost:3000/job-application?email=${user?.email}`)
-            .then(res => res.json())
-            .then(data => {
-                setMyJobs(data)
-            })
+        // fetch(`http://localhost:3000/job-application?email=${user?.email}`)
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         setMyJobs(data)
+        //     })
+      axios.get(`http://localhost:3000/job-application?email=${user?.email}`,{
+        withCredentials : true
+      })
+      .then(res => setMyJobs(res.data))
     }, [user?.email])
 
    

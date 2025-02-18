@@ -6,14 +6,15 @@ import { useContext } from "react";
 import AuthContext from "../../context/authContext/AuthContext";
 
 
+
 const Login = () => {
 
-    const { logIn , signinWgoogle} = useContext(AuthContext)
+    const { logIn, signinWgoogle } = useContext(AuthContext)
 
     const location = useLocation()
     const navigate = useNavigate()
     const from = location.state || '/'
-    
+
 
     const handleLogin = (e) => {
         e.preventDefault()
@@ -33,24 +34,25 @@ const Login = () => {
                 navigate(from)
                 form.reset()
             })
-        .catch(error => {
-            console.log(error.message)
-        })
+            .catch(error => {
+                console.log(error.message)
+            })
     }
 
     const googleLogin = () => {
         signinWgoogle()
-        .then(result => {
-            console.log(result.user)
-            toast("User Login Successful!", {
-                type: "success",
-                theme: "colored"
+            .then(result => {
+                console.log(result.user)
+               
+                toast("User Login Successful!", {
+                    type: "success",
+                    theme: "colored"
+                })
+                navigate(from)
             })
-            navigate(from)
-        })
-        .catch(error =>{
-            console.log(error.message)
-        })
+            .catch(error => {
+                console.log(error.message)
+            })
     }
     return (
         <div className="hero bg-base-200 min-h-screen z-10">
